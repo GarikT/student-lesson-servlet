@@ -14,7 +14,7 @@
 <body>
 <% List<Lesson> lessons = (List<Lesson>)request.getAttribute("lessons"); %>
 Add Student<br>
-<form method="post" action="/addStudent">
+<form method="post" action="/addStudent" enctype="multipart/form-data">
     Student Name: <input type="text" name="studentName"><br>
     Student Surname: <input type="text" name="studentSurname"><br>
     Student Email: <input type="text" name="studentEmail"><br>
@@ -25,6 +25,7 @@ Add Student<br>
     <option value="<%=lesson.getId()%>"><%=lesson.getName()%></option>
     <%}%>
 </select><br>
+    <input type="file" name="picture">
     <input type="submit" value="add">
 </form>
 </body>

@@ -21,6 +21,7 @@ Students | <a href="/addStudent">Add Student</a>
 <table>
     <tr>
         <th>ID</th>
+        <th>Picture</th>
         <th>Name</th>
         <th>Surname</th>
         <th>Email</th>
@@ -32,6 +33,17 @@ Students | <a href="/addStudent">Add Student</a>
         for (Student student : students) { %>
     <tr>
         <td><%=student.getId()%></td>
+        <td>
+            <% if(student.getPicName() != null) { %>
+            <img src="/downloadImage?imageName=<%=student.getPicName()%>" width="75">
+            <%
+            } else {%>
+            <span>No Picture</span>
+            <%
+                    System.out.println(student.getName());
+                    System.out.println(student.getPicName());
+            }%>
+        </td>
         <td><%=student.getName()%></td>
         <td><%=student.getSurname()%></td>
         <td><%=student.getEmail()%></td>
