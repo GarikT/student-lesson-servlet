@@ -26,6 +26,7 @@ Lessons | <a href="addLesson">Add Lesson</a>
         <th>Duration</th>
         <th>Lecturer</th>
         <th>Price</th>
+        <th>User</th>
         <th>Delete</th>
     </tr>
     <%for (Lesson lesson : lessons) { %>
@@ -35,6 +36,12 @@ Lessons | <a href="addLesson">Add Lesson</a>
         <td><%=lesson.getDuration()%></td>
         <td><%=lesson.getLecturer_name()%></td>
         <td><%=lesson.getPrice()%></td>
+        <td>
+            <%if(lesson.getUser() != null){
+                System.out.println(lesson.getUser().getName() + " " + lesson.getUser().getSurname());%>
+            <%=lesson.getUser().getName() + " " + lesson.getUser().getSurname()%>
+            <%}%>
+            </td>
         <td><a href="/deleteLesson?id=<%=lesson.getId()%>">delete</a></td>
     </tr>
     <%}

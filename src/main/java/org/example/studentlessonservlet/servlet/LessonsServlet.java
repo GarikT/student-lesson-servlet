@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.example.studentlessonservlet.manager.LessonManager;
 import org.example.studentlessonservlet.model.Lesson;
+import org.example.studentlessonservlet.model.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/lessons")
@@ -17,8 +19,13 @@ public class LessonsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Lesson> lessons = lessonManager.getLessons();
-        req.setAttribute("lessons", lessons);
-        req.getRequestDispatcher("/WEB-INF/lessons.jsp").forward(req, resp);
+        User user = (User) req.getSession().getAttribute("user");
+        try {
+            List<Lesson> lessons = lessonManager.getLessons(user.getId());
+            req.setAttribute("lessons", lessons);
+            req.getRequestDispatcher("/WEB-INF/lessons.jsp").forward(req, resp);
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

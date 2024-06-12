@@ -27,6 +27,7 @@ Students | <a href="/addStudent">Add Student</a>
         <th>Email</th>
         <th>Age</th>
         <th>Lesson</th>
+        <th>User</th>
         <th>Delete</th>
     </tr>
     <%
@@ -49,6 +50,11 @@ Students | <a href="/addStudent">Add Student</a>
         <td><%=student.getEmail()%></td>
         <td><%=student.getAge()%></td>
         <td><%=student.getLesson().getName()%></td>
+        <td>
+            <% if(student.getUser() != null){%>
+            <%=student.getUser().getName() + " " + student.getUser().getSurname()%>
+            <%}%>
+        </td>
         <td><a href="/deleteStudent?id=<%=student.getId()%>">delete</a></td>
     </tr>
     <%}
